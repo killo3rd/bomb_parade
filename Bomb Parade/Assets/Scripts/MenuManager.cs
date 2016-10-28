@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour {
         for (int i = 0; i < playerButtons.Length; i++)
         {
             int tmp = i;
-            playerButtons[tmp].onClick.AddListener(() => SelectPlayer(tmp+1, playerButtons[tmp].image.color));
+			playerButtons[tmp].onClick.AddListener(() => SelectPlayer(tmp+1, playerButtons[tmp].gameObject.GetComponent<Image>().sprite));
         }
  
         for (int i = 0; i < mapButtons.Length; i++)
@@ -148,17 +148,19 @@ public class MenuManager : MonoBehaviour {
 
     }
 
-    public void SelectPlayer(int player, Color color)
+	public void SelectPlayer(int player, Sprite image)
     {
         if (currentPlayerSelection == 0)
         {
             player1 = player;
-            player1Image.color = color;
+			player1Image.sprite = image;
+			player1Image.color = new Color(255,255,255,255);
             currentPlayerSelection++;
         }
         else {
             player2 = player;
-            player2Image.color = color;
+			player2Image.sprite = image;
+			player2Image.color = new Color(255,255,255,255);
             currentPlayerSelection = 0;
         }
     }
